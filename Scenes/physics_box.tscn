@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://vrlxfkhmignx"]
+[gd_scene load_steps=5 format=3 uid="uid://vrlxfkhmignx"]
 
 [ext_resource type="Texture2D" uid="uid://cpjldu5fb4ubf" path="res://Sprites/BaseSquare.png" id="1_l15dp"]
+[ext_resource type="Texture2D" uid="uid://dly2d8ayg03ya" path="res://Sprites/Arrow.png" id="2_vrikd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw02j"]
 size = Vector2(16, 16)
+
+[sub_resource type="Curve2D" id="Curve2D_2i4eb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
 
 [node name="Physics Box" type="Node2D"]
 position = Vector2(0, 1)
@@ -15,3 +22,13 @@ texture = ExtResource("1_l15dp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_yw02j")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-4, -7)
+points = PackedVector2Array(4, -26, 4, -8)
+width = 5.0
+texture = ExtResource("2_vrikd")
+texture_mode = 1
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2i4eb")
