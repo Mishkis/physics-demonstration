@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://vrlxfkhmignx"]
+
+[ext_resource type="Texture2D" uid="uid://cpjldu5fb4ubf" path="res://Sprites/BaseSquare.png" id="1_l15dp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw02j"]
+size = Vector2(16, 16)
+
+[node name="Physics Box" type="Node2D"]
+position = Vector2(0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_l15dp")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_yw02j")
