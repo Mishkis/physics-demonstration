@@ -19,18 +19,23 @@ texture = ExtResource("1_l15dp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_yw02j")
+one_way_collision_margin = 30.0
 
-[node name="Force Manager" parent="." node_paths=PackedStringArray("acceleration", "forces") instance=ExtResource("2_kf7x0")]
+[node name="Force Manager" parent="." node_paths=PackedStringArray("velocity", "acceleration", "normal_force", "forces") instance=ExtResource("2_kf7x0")]
+velocity = NodePath("Velocity")
 acceleration = NodePath("Acceleration")
-forces = [NodePath("Force"), NodePath("Force2")]
+normal_force = NodePath("Normal Force")
+forces = [NodePath("Force"), NodePath("Force2"), NodePath("Normal Force")]
+
+[node name="Normal Force" parent="Force Manager" instance=ExtResource("5_4teml")]
+force_name = "N"
+color = Color(1, 0.545098, 0, 1)
 
 [node name="Acceleration" parent="Force Manager" node_paths=PackedStringArray("velocity") instance=ExtResource("3_7yqb0")]
 velocity = NodePath("../Velocity")
 
 [node name="Velocity" parent="Force Manager" node_paths=PackedStringArray("object") instance=ExtResource("4_f22fd")]
 object = NodePath("../..")
-magnitude = null
-angle = null
 
 [node name="Force" parent="Force Manager" instance=ExtResource("5_4teml")]
 force_name = "a"
@@ -42,4 +47,5 @@ force_name = "G"
 magnitude = 9.81
 angle = 1.57041
 
-[connection signal="area_entered" from="Area2D" to="Force Manager/Velocity" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D" to="Force Manager" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="Force Manager" method="_on_area_2d_area_exited"]

@@ -11,8 +11,12 @@ extends Line2D
 
 func draw_arrow(pointArray: PackedVector2Array) -> void:
 	if magnitude > 0:
+		show()
+		
 		points = pointArray
 		modulate = color
 		
 		pivot_point.position = pointArray[0] + Vector2(20, 0).rotated(angle)
 		text_display.text = force_name
+	else:
+		hide()
