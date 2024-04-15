@@ -4,3 +4,4 @@
 
 [node name="Force Manager" type="Node"]
 script = ExtResource("1_n8uvl")
+mass = 1.0

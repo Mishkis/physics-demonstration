@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ekrlcoj8v3s7"]
+
+[ext_resource type="Texture2D" uid="uid://dly2d8ayg03ya" path="res://Sprites/Arrow.png" id="1_5p53y"]
+[ext_resource type="Script" path="res://Scripts/velocity.gd" id="2_bhvl8"]
+[ext_resource type="PackedScene" uid="uid://cwdriu4var70i" path="res://Components/vector_label.tscn" id="3_100gb"]
+
+[node name="Velocity" type="Line2D" node_paths=PackedStringArray("pivot_point", "text_display")]
+points = PackedVector2Array(0, -50, 0, 0)
+texture = ExtResource("1_5p53y")
+texture_mode = 1
+script = ExtResource("2_bhvl8")
+pivot_point = NodePath("Node2D")
+text_display = NodePath("Node2D/Vector Label")
+force_name = "v"
+color = Color(0, 1, 1, 1)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Vector Label" parent="Node2D" instance=ExtResource("3_100gb")]
+offset_bottom = 45.0

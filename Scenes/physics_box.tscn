@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://vrlxfkhmignx"]
+[gd_scene load_steps=7 format=3 uid="uid://vrlxfkhmignx"]
 
 [ext_resource type="Texture2D" uid="uid://cpjldu5fb4ubf" path="res://Sprites/BaseSquare.png" id="1_l15dp"]
-[ext_resource type="Texture2D" uid="uid://dly2d8ayg03ya" path="res://Sprites/Arrow.png" id="2_vrikd"]
+[ext_resource type="PackedScene" uid="uid://c403j863mjx6x" path="res://Scenes/force_manager.tscn" id="2_kf7x0"]
+[ext_resource type="PackedScene" uid="uid://c5nablf4083mr" path="res://Components/acceleration.tscn" id="3_7yqb0"]
+[ext_resource type="PackedScene" uid="uid://ekrlcoj8v3s7" path="res://Components/velocity.tscn" id="4_f22fd"]
+[ext_resource type="PackedScene" uid="uid://c3yr4mqltsmf3" path="res://Components/force.tscn" id="5_4teml"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw02j"]
 size = Vector2(16, 16)
@@ -17,9 +20,22 @@ texture = ExtResource("1_l15dp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_yw02j")
 
-[node name="Line2D" type="Line2D" parent="."]
-position = Vector2(-4, -7)
-points = PackedVector2Array(4, -26, 4, -8)
-width = 5.0
-texture = ExtResource("2_vrikd")
-texture_mode = 1
+[node name="Force Manager" parent="." node_paths=PackedStringArray("acceleration", "forces") instance=ExtResource("2_kf7x0")]
+acceleration = NodePath("Acceleration")
+forces = [NodePath("Force"), NodePath("Force2")]
+
+[node name="Acceleration" parent="Force Manager" node_paths=PackedStringArray("velocity") instance=ExtResource("3_7yqb0")]
+velocity = NodePath("../Velocity")
+
+[node name="Velocity" parent="Force Manager" node_paths=PackedStringArray("object") instance=ExtResource("4_f22fd")]
+object = NodePath("../..")
+
+[node name="Force" parent="Force Manager" instance=ExtResource("5_4teml")]
+force_name = "a"
+magnitude = 10.0
+color = Color(0, 0.894118, 0, 1)
+
+[node name="Force2" parent="Force Manager" instance=ExtResource("5_4teml")]
+force_name = "G"
+magnitude = 9.81
+angle = 1.57041

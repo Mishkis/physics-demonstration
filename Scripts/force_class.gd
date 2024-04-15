@@ -10,8 +10,9 @@ extends Line2D
 @export var color: Color
 
 func draw_arrow(pointArray: PackedVector2Array) -> void:
-	points = pointArray
-	modulate = color
-	
-	pivot_point.position = pointArray[0] + Vector2(20, 0).rotated(angle)
-	text_display.text = force_name
+	if magnitude > 0:
+		points = pointArray
+		modulate = color
+		
+		pivot_point.position = pointArray[0] + Vector2(20, 0).rotated(angle)
+		text_display.text = force_name

@@ -19,7 +19,7 @@ func update(updated_force: Force, updated_mag: float, updated_ang: float) -> voi
 			
 			f.draw_arrow(PackedVector2Array([Vector2(f.magnitude, 0).rotated(f.angle), Vector2.ZERO]))
 		
-		net_force += Vector2(f.magnitude, 0).rotated(f.angle)
+		net_force += f.points[0]
 	
 	net_force /= mass
 	
