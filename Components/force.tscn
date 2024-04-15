@@ -1,19 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbjckq7hjqmcc"]
+[gd_scene load_steps=4 format=3 uid="uid://c3yr4mqltsmf3"]
 
 [ext_resource type="Texture2D" uid="uid://dly2d8ayg03ya" path="res://Sprites/Arrow.png" id="1_3kflq"]
 [ext_resource type="Script" path="res://Scripts/force_class.gd" id="1_lvivd"]
 [ext_resource type="PackedScene" uid="uid://b0fj6f657ianx" path="res://Components/force_label.tscn" id="2_dxv2e"]
 
-[node name="Force" type="Line2D" node_paths=PackedStringArray("text_display")]
-position = Vector2(535, 299)
+[node name="Force" type="Line2D" node_paths=PackedStringArray("pivot_point", "text_display")]
 points = PackedVector2Array(0, -50, 0, 0)
 texture = ExtResource("1_3kflq")
 texture_mode = 1
 script = ExtResource("1_lvivd")
-text_display = NodePath("Force Label")
+pivot_point = NodePath("Node2D")
+text_display = NodePath("Node2D/Force Label")
 
-[node name="Force Label" parent="." instance=ExtResource("2_dxv2e")]
-offset_left = 1.0
-offset_top = -71.0
-offset_right = 41.0
-offset_bottom = -48.0
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Force Label" parent="Node2D" instance=ExtResource("2_dxv2e")]

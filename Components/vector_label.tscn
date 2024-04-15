@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwdriu4var70i"]
+
+[ext_resource type="Texture2D" uid="uid://dly2d8ayg03ya" path="res://Sprites/Arrow.png" id="1_xgipf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4bset"]
+font_size = 32
+
+[node name="Force Label" type="Label"]
+offset_left = -9.0
+offset_top = -12.0
+offset_right = 31.0
+offset_bottom = 33.0
+text = "a"
+label_settings = SubResource("LabelSettings_4bset")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(0, 5)
+points = PackedVector2Array(20, 3, 0, 3)
+width = 5.0
+texture = ExtResource("1_xgipf")
+texture_mode = 1
