@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://vrlxfkhmignx"]
 
 [ext_resource type="Texture2D" uid="uid://cpjldu5fb4ubf" path="res://Sprites/BaseSquare.png" id="1_l15dp"]
-[ext_resource type="PackedScene" uid="uid://c403j863mjx6x" path="res://Scenes/force_manager.tscn" id="2_kf7x0"]
+[ext_resource type="PackedScene" uid="uid://jaiiciuhagqq" path="res://Scenes/force_manager.tscn" id="2_kf7x0"]
 [ext_resource type="PackedScene" uid="uid://c5nablf4083mr" path="res://Components/acceleration.tscn" id="3_7yqb0"]
 [ext_resource type="PackedScene" uid="uid://ekrlcoj8v3s7" path="res://Components/velocity.tscn" id="4_f22fd"]
 [ext_resource type="PackedScene" uid="uid://c3yr4mqltsmf3" path="res://Components/force.tscn" id="5_4teml"]
@@ -10,7 +10,7 @@
 size = Vector2(16, 16)
 
 [node name="Physics Box" type="Node2D"]
-position = Vector2(0, 1)
+position = Vector2(192, 242)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_l15dp")

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cwdriu4var70i" path="res://Components/vector_label.tscn" id="3_100gb"]
 
 [node name="Velocity" type="Line2D" node_paths=PackedStringArray("pivot_point", "text_display")]
-points = PackedVector2Array(0, -50, 0, 0)
+points = PackedVector2Array(0, 0, 0, 0)
 texture = ExtResource("1_5p53y")
 texture_mode = 1
 script = ExtResource("2_bhvl8")

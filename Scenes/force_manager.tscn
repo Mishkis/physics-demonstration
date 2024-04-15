@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c403j863mjx6x"]
+[gd_scene load_steps=2 format=3 uid="uid://jaiiciuhagqq"]
 
 [ext_resource type="Script" path="res://Scripts/force_manager.gd" id="1_n8uvl"]
 
-[node name="Force Manager" type="Node"]
+[node name="Force Manager" type="Node2D"]
 script = ExtResource("1_n8uvl")
 mass = 1.0
