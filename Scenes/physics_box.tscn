@@ -29,6 +29,8 @@ velocity = NodePath("../Velocity")
 
 [node name="Velocity" parent="Force Manager" node_paths=PackedStringArray("object") instance=ExtResource("4_f22fd")]
 object = NodePath("../..")
+magnitude = null
+angle = null
 
 [node name="Force" parent="Force Manager" instance=ExtResource("5_4teml")]
 force_name = "a"
@@ -39,3 +41,5 @@ color = Color(0, 0.894118, 0, 1)
 force_name = "G"
 magnitude = 9.81
 angle = 1.57041
+
+[connection signal="area_entered" from="Area2D" to="Force Manager/Velocity" method="_on_area_2d_area_entered"]
