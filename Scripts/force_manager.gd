@@ -7,12 +7,18 @@ extends Node
 
 @export var normal_force: Force
 
+@export var left_force: Force
+
 @export var friction_force: Force
 
 @export var forces: Array[Force]
 
+var mew: float
+
 # "N" for none, "U" for up, "L" for left, "R" for right.
 var colliding: String = "N"
+
+var stationary: bool = false
 
 func _ready() -> void:
 	for f in forces:
@@ -64,41 +70,52 @@ func update(updated_force: Force, updated_mag: float, updated_ang: float) -> voi
 	if colliding != "N":
 		match colliding:
 			"U":
+				if net_force.y > 0:
+					net_force.y = 0
 				if not (-0.001 <= net_force.y and net_force.y <= 0.001):
-					update(normal_force, min(0, normal_force.magnitude - net_force.y), -PI/2)
+					if net_force.y < -0.001:
+						colliding = "N"
+						update(normal_force, 0, 0)
+					else:
+						print(net_force.y)
+						update(normal_force, net_force.y, -PI/2)
 				
-				var friction_coefficent: float = 0.2 * normal_force.magnitude
-				if -friction_force.points[0].x != friction_coefficent:
-					update(friction_force, friction_coefficent, 0 if net_force.x < 0 else PI)
+				if not stationary:
+					var friction_coefficent: float = mew * normal_force.magnitude
+					var diff: float = min(friction_coefficent - friction_force.magnitude, friction_coefficent + friction_force.magnitude)
+					if not (-0.001 <= diff and diff <= 0.001):
+						update(friction_force, friction_coefficent, 0 if net_force.x < 0 else PI)
 				
 				if normal_force.points[0].y != 0:
 					net_force.y = 0
-				net_force += friction_force.points[0]
 			"L":
 				if not (-0.001 <= net_force.x and net_force.x <= 0.001):
+					if net_force.x > 0.1:
+						colliding = "N"
+						update(normal_force, 0, 0)
 					update(normal_force, normal_force.magnitude - net_force.x, 0)
 				
-				var friction_coefficent: float = 0.2 * normal_force.magnitude
-				var diff: float = friction_coefficent + friction_force.points[0].y
-				
+				var friction_coefficent: float = 0.4 * normal_force.magnitude
+				var diff: float = friction_coefficent - friction_force.magnitude
 				if not (-0.001 <= diff and diff <= 0.001):
 					update(friction_force, friction_coefficent, -PI/2)
 				
 				if normal_force.points[0].x != 0:
 					net_force.x = 0
-				net_force += friction_force.points[0]
 			"R":
 				if not (-0.001 <= net_force.x and net_force.x <= 0.001):
+					if net_force.x < -0.1:
+						colliding = "N"
+						update(normal_force, 0, 0)
 					update(normal_force, normal_force.magnitude + net_force.x, PI)
 				
-				var friction_coefficent: float = 0.2 * normal_force.magnitude
+				var friction_coefficent: float = 0.4 * normal_force.magnitude
 				var diff: float = friction_coefficent + friction_force.points[0].y
 				if not (-0.001 <= diff and diff <= 0.001):
 					update(friction_force, friction_coefficent, -PI/2)
 				
 				if normal_force.points[0].x != 0:
 					net_force.x = 0
-				net_force += friction_force.points[0]
 	
 	net_force /= mass
 	
@@ -106,4 +123,3 @@ func update(updated_force: Force, updated_mag: float, updated_ang: float) -> voi
 	acceleration.angle = net_force.angle()
 	
 	acceleration.draw_arrow(PackedVector2Array([net_force, Vector2.ZERO]))
-

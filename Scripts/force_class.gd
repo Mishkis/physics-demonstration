@@ -19,4 +19,5 @@ func draw_arrow(pointArray: PackedVector2Array) -> void:
 		pivot_point.position = pointArray[0] + Vector2(20, 0).rotated(angle)
 		text_display.text = force_name
 	else:
+		points = pointArray
 		hide()

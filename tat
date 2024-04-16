@@ -1,0 +1,47 @@
+[33mcommit 9ba5b75df417f7d9a650f352ecef9c5706cb2422[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Mishkis <misha.o.gm@gmail.com>
+Date:   Mon Apr 15 15:50:22 2024 -0300
+
+    Started adding collision detection
+
+[33mcommit 287c2105f5a4008d2c73cdd28e73ff58c402743d[m
+Author: Mishkis <misha.o.gm@gmail.com>
+Date:   Mon Apr 15 14:58:01 2024 -0300
+
+    Made velocity move object
+
+[33mcommit f4843c634d67364ab32c06b9dca2c8e85d3f947a[m
+Author: Mishkis <misha.o.gm@gmail.com>
+Date:   Mon Apr 15 14:52:32 2024 -0300
+
+    Added Velocity
+
+[33mcommit aa7b548511447835392a1a3b4fb49b63424402a2[m
+Author: Mishkis <misha.o.gm@gmail.com>
+Date:   Mon Apr 15 13:25:56 2024 -0300
+
+    Added acceleration. Added force manager.
+
+[33mcommit 27b604369017ab5e19af1bba60465a0546675e3e[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Mishkis <misha.o.gm@gmail.com>
+Date:   Sat Apr 13 23:38:57 2024 -0300
+
+    Added Force Class
+
+[33mcommit 1fe4c12ea0d70476db7bff5b9e37a3290c84126c[m
+Author: Mishkis <misha.o.gm@gmail.com>
+Date:   Fri Mar 29 19:39:52 2024 -0300
+
+    Added Arrow Sprite
+
+[33mcommit ffe1295cdd7c01f35084c6fe7011517173d2139d[m
+Author: Mishkis <misha.o.gm@gmail.com>
+Date:   Fri Mar 29 14:05:05 2024 -0300
+
+    Added physics box
+
+[33mcommit eb307d37338d5387ea5f45fee274e18994356d00[m
+Author: Mishkis <misha.o.gm@gmail.com>
+Date:   Fri Mar 29 13:44:43 2024 -0300
+
+    Created Project
