@@ -27,32 +27,30 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		net_force += f.points[0]
 	
 	if collision_size[0] > collision_size[1]:
-		update(normal_force, net_force.y, -PI/2)
 		colliding = "U"
+		update(normal_force, net_force.y, -PI/2)
 		velocity.points[0] = Vector2(velocity.points[0].x, 0)
 	else:
 		if net_force.x > 0:
+			colliding = "R"
+			update(normal_force, net_force.x, 0)
+		else:
 			colliding = "L"
 			update(normal_force, net_force.x, PI)
-		else:
-			colliding = "R"
-			update(normal_force, net_force.x, PI)
 		
-		
-		velocity.points[1] = Vector2(0, velocity.points[0].y)
-		update(normal_force, 0, 0)
+		velocity.points[0] = Vector2(0, velocity.points[0].y)
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	colliding = "N"
+	update(normal_force, 0, 0)
+	update(friction_force, 0, 0)
 
 
 func update(updated_force: Force, updated_mag: float, updated_ang: float) -> void:
-	var net_down: float = 0
-	var net_up: float = 0
-	var net_left: float = 0
-	var net_right: float = 0
-	
+	if colliding == "N":
+		normal_force.points[0] = Vector2(0, 0)
+		friction_force.points[0] = Vector2(0, 0)
 	var net_force: Vector2 = Vector2(0, 0)
 	for f in forces:
 		if f == updated_force:
@@ -62,26 +60,45 @@ func update(updated_force: Force, updated_mag: float, updated_ang: float) -> voi
 			f.draw_arrow(PackedVector2Array([Vector2(f.magnitude, 0).rotated(f.angle), Vector2.ZERO]))
 		
 		net_force += f.points[0]
-		
-		if f.points[0].x > 0:
-			net_right += f.points[0].x
-		else:
-			net_left += f.points[0].x
-		
-		if f.points[0].y > 0:
-			net_up += f.points[0].y
-		else:
-			net_down += f.points[0].y
 	
 	if colliding != "N":
 		match colliding:
 			"U":
-				normal_force.points[0].y = net_down
+				if not (-0.001 <= net_force.y and net_force.y <= 0.001):
+					update(normal_force, min(0, normal_force.magnitude - net_force.y), -PI/2)
+				
+				var friction_coefficent: float = 0.2 * normal_force.magnitude
+				if -friction_force.points[0].x != friction_coefficent:
+					update(friction_force, friction_coefficent, 0 if net_force.x < 0 else PI)
+				
+				if normal_force.points[0].y != 0:
+					net_force.y = 0
+				net_force += friction_force.points[0]
 			"L":
-				normal_force.points[0].x = net_left
+				if not (-0.001 <= net_force.x and net_force.x <= 0.001):
+					update(normal_force, normal_force.magnitude - net_force.x, 0)
+				
+				var friction_coefficent: float = 0.2 * normal_force.magnitude
+				var diff: float = friction_coefficent + friction_force.points[0].y
+				
+				if not (-0.001 <= diff and diff <= 0.001):
+					update(friction_force, friction_coefficent, -PI/2)
+				
+				if normal_force.points[0].x != 0:
+					net_force.x = 0
+				net_force += friction_force.points[0]
 			"R":
-				normal_force.points[0].x = net_right
-		
+				if not (-0.001 <= net_force.x and net_force.x <= 0.001):
+					update(normal_force, normal_force.magnitude + net_force.x, PI)
+				
+				var friction_coefficent: float = 0.2 * normal_force.magnitude
+				var diff: float = friction_coefficent + friction_force.points[0].y
+				if not (-0.001 <= diff and diff <= 0.001):
+					update(friction_force, friction_coefficent, -PI/2)
+				
+				if normal_force.points[0].x != 0:
+					net_force.x = 0
+				net_force += friction_force.points[0]
 	
 	net_force /= mass
 	
