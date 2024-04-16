@@ -1,0 +1,145 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxw37sfp4x6om"]
+
+[ext_resource type="Texture2D" uid="uid://cpjldu5fb4ubf" path="res://Sprites/BaseSquare.png" id="1_fcwwy"]
+[ext_resource type="Texture2D" uid="uid://dly2d8ayg03ya" path="res://Sprites/Arrow.png" id="2_a2f84"]
+[ext_resource type="PackedScene" uid="uid://cwdriu4var70i" path="res://Components/vector_label.tscn" id="3_b3wps"]
+[ext_resource type="PackedScene" uid="uid://b0fj6f657ianx" path="res://Components/force_label.tscn" id="4_bicey"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c5ug8"]
+font_size = 32
+
+[node name="Node" type="Node"]
+
+[node name="BaseSquare" type="Sprite2D" parent="."]
+position = Vector2(463.403, 1203)
+scale = Vector2(-707.05, 84.2636)
+texture = ExtResource("1_fcwwy")
+
+[node name="BaseSquare2" type="Sprite2D" parent="."]
+position = Vector2(361.903, 450.5)
+scale = Vector2(13.375, 10.4375)
+texture = ExtResource("1_fcwwy")
+
+[node name="BaseSquare3" type="Sprite2D" parent="."]
+position = Vector2(661.903, 450.5)
+scale = Vector2(13.375, 10.4375)
+texture = ExtResource("1_fcwwy")
+
+[node name="BaseSquare4" type="Sprite2D" parent="."]
+position = Vector2(961.903, 450.5)
+scale = Vector2(13.375, 10.4375)
+texture = ExtResource("1_fcwwy")
+
+[node name="BaseSquare5" type="Sprite2D" parent="."]
+position = Vector2(1266.9, 413)
+scale = Vector2(13.375, 15)
+texture = ExtResource("1_fcwwy")
+
+[node name="BaseSquare6" type="Sprite2D" parent="."]
+position = Vector2(511.903, 457.5)
+scale = Vector2(5.375, 1.6875)
+texture = ExtResource("1_fcwwy")
+
+[node name="BaseSquare7" type="Sprite2D" parent="."]
+position = Vector2(811.903, 457.5)
+scale = Vector2(5.375, 1.6875)
+texture = ExtResource("1_fcwwy")
+
+[node name="BaseSquare8" type="Sprite2D" parent="."]
+position = Vector2(1114.4, 457.5)
+scale = Vector2(5.6875, 1.6875)
+texture = ExtResource("1_fcwwy")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(137.903, 6)
+points = PackedVector2Array(1425, 427, 1270, 427)
+width = 25.0
+default_color = Color(1, 0, 0, 1)
+texture = ExtResource("2_a2f84")
+texture_mode = 1
+
+[node name="Force Label" parent="Line2D" instance=ExtResource("3_b3wps")]
+modulate = Color(1, 0, 0, 1)
+offset_left = 1453.0
+offset_top = 405.0
+offset_right = 1493.0
+offset_bottom = 450.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2(-1059.1, -10.12)
+scale = Vector2(1, 1.06)
+points = PackedVector2Array(1097, 427, 1270, 427)
+width = 25.0
+default_color = Color(0, 0, 1, 1)
+texture = ExtResource("2_a2f84")
+texture_mode = 1
+
+[node name="Force Label" parent="Line2D2" instance=ExtResource("4_bicey")]
+modulate = Color(0, 0, 1, 1)
+offset_left = 1058.0
+offset_top = 423.698
+offset_right = 1098.0
+offset_bottom = 446.698
+text = "F"
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(792, 333)
+zoom = Vector2(0.69, 0.69)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 310.0
+offset_top = 319.0
+offset_right = 418.0
+offset_bottom = 364.0
+text = "8000kg"
+label_settings = SubResource("LabelSettings_c5ug8")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 620.0
+offset_top = 318.0
+offset_right = 728.0
+offset_bottom = 363.0
+text = "8000kg"
+label_settings = SubResource("LabelSettings_c5ug8")
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 912.0
+offset_top = 319.0
+offset_right = 1020.0
+offset_bottom = 364.0
+text = "8000kg"
+label_settings = SubResource("LabelSettings_c5ug8")
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 1218.0
+offset_top = 241.0
+offset_right = 1326.0
+offset_bottom = 286.0
+text = "10000kg"
+label_settings = SubResource("LabelSettings_c5ug8")
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 454.0
+offset_top = 403.0
+offset_right = 569.0
+offset_bottom = 448.0
+text = "12500N"
+label_settings = SubResource("LabelSettings_c5ug8")
+
+[node name="Label6" type="Label" parent="."]
+offset_left = 753.0
+offset_top = 405.0
+offset_right = 868.0
+offset_bottom = 450.0
+text = "25000N"
+label_settings = SubResource("LabelSettings_c5ug8")
+
+[node name="Label7" type="Label" parent="."]
+offset_left = 1056.0
+offset_top = 404.0
+offset_right = 1171.0
+offset_bottom = 449.0
+text = "37500N"
+label_settings = SubResource("LabelSettings_c5ug8")

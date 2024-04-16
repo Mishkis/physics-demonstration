@@ -8,6 +8,8 @@ extends Node
 
 @export var camera: Camera2D
 
+@export var train: PackedScene
+
 var force: int
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -61,3 +63,5 @@ func _unhandled_input(event: InputEvent) -> void:
 			force = 80
 		"9":
 			force = 90
+		"Space":
+			get_tree().change_scene_to_file("res://Scenes/train.tscn")
